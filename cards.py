@@ -45,7 +45,7 @@ class Effects(Cards):
     elif self.stat == 'power':
       target.power += self.magnitude
     
-    print(f'{target} now has {target.power} Power and {target. resistance} Resistance\n')
+    print(f'{self.name} was played on {target}, and now has {target.power} Power and {target. resistance} Resistance\n')
 
 
 red_ninja = Units('Red Belt Ninja', 3, 3, 4)
