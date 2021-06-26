@@ -9,9 +9,6 @@ class Units (Cards):
     super().__init__(name, cost)
     self.power = power
     self.resistance = resistance
-
-  def play(self, which_player):
-    print(f'Player {which_player} has summoned {self.name}')
   
   def attack(self, target):
     if isinstance(target, Units) == False:
@@ -19,11 +16,11 @@ class Units (Cards):
       return
     target.resistance -= self.power
     if target.resistance <= 0:
-      print(f'{target} has died, Game Over')
+      print(f'{target} has died, Game Over\n')
     return self
   
   def show_stats(self):
-    print(f'Name: {self.name}, Power: {self.power}, Resistance: {self.resistance}')
+    print(f'Name: {self.name}, Power: {self.power}, Resistance: {self.resistance}\n')
     return self
   
   def __repr__(self):
@@ -45,18 +42,31 @@ class Effects(Cards):
     elif self.stat == 'power':
       target.power += self.magnitude
     
-    print(f'{self.name} was played on {target}, and now has {target.power} Power and {target. resistance} Resistance\n')
+    print(f'"{self.name}" was played on "{target}", and now has {target.power} Power and {target. resistance} Resistance\n')
+  
+  def __repr__(self):
+      return self.name
 
+class Player:
+  def __init__(self, name):
+    
+    self.name = name
+    self.units = []
+    self.effects = []
 
-red_ninja = Units('Red Belt Ninja', 3, 3, 4)
-black_ninja = Units('Black Belt Ninja', 4, 5, 4)
-hard_algorithm = Effects('Hard Algorithm', 2, 'resistance', 3)
-not_managed_promise = Effects('Not Managed Promise', 1, 'resistance', -2)
-pair_programming = Effects('Pair Programming', 3, 'power', 2)
-
-red_ninja.play(1)
-hard_algorithm.affect(red_ninja)
-black_ninja.play(2)
-not_managed_promise.affect(red_ninja)
-pair_programming.affect(red_ninja)
-red_ninja.attack(black_ninja)
+  def add_unit(self, card_name):
+    if isinstance(card_name, Units)==True:
+      self.units.append(card_name)
+    else:
+      print('Must be a "Unit" card')
+    return self
+  
+  def add_effect(self, card_name):
+    if isinstance(card_name, Effects):
+      self.effects.append(card_name)
+    else:
+      print('Must be an "Effect" card')
+    return self
+  
+  def __repr__(self):
+      return self.name
