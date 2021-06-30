@@ -83,22 +83,15 @@ def main():
             player.effects[which_effect].affect(player.units[which_unit])
             # print(f'{player.units[which_unit].show_stats()}')
 
-          elif which_target == '2' and player is player1:
-            for i in range(len(player2.units)):
-              print(f'{i+1}: {player2.units[i].name}')
-            which_oponent = int(input('\n'))-1
-
-          elif which_target == '2' and player is player2:
-            for i in range(len(player1.units)):
-                print(f'{i+1}: {player1.units[i].name}')
+          elif which_target == '2':
+            
+            if player == player1:
+              for i in range(len(player2.units)):
+                print(f'{i+1}: {player2.units[i].name}')
             which_oponent = int(input('\n'))-1
             # player.effects[which_effect].affect(player2.units[which_oponent
-        
-        if play == '2':
-          pass
 
           print(f'\nPlayer has used {player.effects[which_effect]} on {player.units[which_unit]}!')
-
       if choice == '2':
         print('\n--Unit cards--\t\t --Effect cards--\n')
         for i in range(len(player.units)):
@@ -107,11 +100,11 @@ def main():
       if choice =='3':
         break
 
-@app.route("/")
-def hello_world():
-  return render_template('index.html', list=list)
+# @app.route("/")
+# def hello_world():
+#     return render_template('index.html', list=list)
 
 
-app.run(debug=True)
+# app.run(debug=True)
 
 main()
